@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+crewai
+openai
+sqlalchemy
+alembic
+psycopg2-binary
+celery
+redis
+python-jose
+httpx
+python-dotenv
+pydantic
+email-validator

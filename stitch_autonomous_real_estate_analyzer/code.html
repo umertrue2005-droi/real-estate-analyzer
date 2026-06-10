@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=DM+Serif+Display&amp;family=Outfit:wght@300;400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@100..900&amp;family=DM+Serif+Display:wght@100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#2e3545",
+                        "inverse-on-surface": "#293040",
+                        "on-secondary": "#003257",
+                        "on-tertiary-fixed": "#291800",
+                        "secondary": "#9dcaff",
+                        "on-error-container": "#ffdad6",
+                        "on-surface": "#dce2f7",
+                        "primary-container": "#63b38a",
+                        "surface": "#0c1322",
+                        "on-secondary-container": "#e1edff",
+                        "tertiary-container": "#dd9406",
+                        "surface-container-highest": "#2e3545",
+                        "on-surface-variant": "#bec9c0",
+                        "tertiary-fixed-dim": "#ffb950",
+                        "on-primary-fixed-variant": "#005234",
+                        "primary-fixed-dim": "#86d7ac",
+                        "on-tertiary-container": "#513300",
+                        "on-secondary-fixed-variant": "#00497c",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#a2f4c7",
+                        "on-primary": "#003823",
+                        "on-tertiary": "#452b00",
+                        "secondary-fixed-dim": "#9dcaff",
+                        "tertiary-fixed": "#ffddb3",
+                        "error-container": "#93000a",
+                        "outline-variant": "#3f4942",
+                        "surface-container-lowest": "#070e1d",
+                        "inverse-primary": "#126c48",
+                        "surface-tint": "#86d7ac",
+                        "on-secondary-fixed": "#001d35",
+                        "outline": "#89938b",
+                        "surface-dim": "#0c1322",
+                        "on-primary-container": "#00432a",
+                        "secondary-container": "#056eb5",
+                        "surface-container-low": "#141b2b",
+                        "primary": "#86d7ac",
+                        "on-error": "#690005",
+                        "on-background": "#dce2f7",
+                        "tertiary": "#ffb950",
+                        "on-tertiary-fixed-variant": "#624000",
+                        "surface-bright": "#323949",
+                        "inverse-surface": "#dce2f7",
+                        "secondary-fixed": "#d1e4ff",
+                        "surface-container-high": "#232a3a",
+                        "on-primary-fixed": "#002113",
+                        "background": "#0c1322",
+                        "surface-container": "#191f2f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "margin": "24px",
+                        "xl": "32px",
+                        "gutter": "20px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Outfit"],
+                        "display-lg": ["DM Serif Display"],
+                        "headline-md": ["DM Serif Display"],
+                        "headline-lg": ["DM Serif Display"],
+                        "label-sm": ["DM Mono"],
+                        "label-md": ["DM Mono"],
+                        "body-md": ["Outfit"],
+                        "body-sm": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "label-sm": ["10px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "300"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #0c1322; color: #dce2f7; font-family: 'Outfit', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-card { background: #111827; border: 1px solid rgba(134, 215, 172, 0.15); box-shadow: 0 0 15px rgba(134, 215, 172, 0.05); }
+        .pulse-amber { animation: pulse-amber 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse-amber { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+        .progress-shimmer { background: linear-gradient(90deg, transparent, rgba(255, 185, 80, 0.2), transparent); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .glow-mint { box-shadow: 0 0 10px rgba(134, 215, 172, 0.1); }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 z-40 bg-surface-container border-r border-primary/10 flex flex-col py-lg px-md">
+<div class="mb-xl">
+<h1 class="font-display-lg text-headline-md text-primary">Aetheris Terminal</h1>
+<p class="font-body-sm text-on-surface-variant opacity-70">Algorithmic Real Estate</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-all text-on-surface-variant hover:bg-surface-variant/50 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Search</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-all text-primary bg-primary/10 border-r-2 border-primary group" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Pipeline</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-all text-on-surface-variant hover:bg-surface-variant/50 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="dashboard_customize">dashboard_customize</span>
+<span class="font-label-md text-label-md">Results</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg transition-all text-on-surface-variant hover:bg-surface-variant/50 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary" data-icon="description">description</span>
+<span class="font-label-md text-label-md">Investment Memo</span>
+</a>
+</nav>
+<div class="pt-lg border-t border-primary/10 space-y-sm">
+<button class="w-full bg-primary text-on-primary py-sm rounded-lg font-body-md font-bold mb-md hover:brightness-110 active:scale-95 transition-all">
+                New Analysis
+            </button>
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm uppercase">Settings</span>
+</a>
+<a class="flex items-center gap-md px-md py-xs text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help">help</span>
+<span class="font-label-sm text-label-sm uppercase">Support</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 ml-64 flex flex-col relative">
+<!-- TopNavBar Shell -->
+<header class="sticky top-0 w-full z-30 bg-surface/80 backdrop-blur-md border-b border-primary/15 shadow-[0_0_15px_rgba(134,215,172,0.1)] flex justify-between items-center px-margin py-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="share_location">share_location</span>
+<h2 class="font-headline-md text-headline-md text-on-surface leading-none">Analyzing: 123 Main St, Austin TX 78702</h2>
+</div>
+<div class="flex items-center gap-xs mt-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary pulse-amber"></span>
+<span class="font-label-md text-label-md text-on-surface-variant">Pipeline Active • </span>
+<span class="font-label-md text-label-md text-primary ml-1" id="countdown">42 seconds remaining</span>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm bg-surface-container-high px-md py-sm rounded-full border border-primary/10">
+<span class="font-label-md text-label-md text-on-surface-variant">MLS LIVE SYNC</span>
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+</div>
+<button class="font-body-md text-primary font-bold hover:text-primary-fixed transition-colors">Sign In</button>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto px-margin py-xl max-w-container-max mx-auto w-full">
+<!-- Visual Background Element -->
+<div class="absolute top-0 right-0 w-1/3 h-full pointer-events-none overflow-hidden opacity-20">
+<img class="w-full h-full object-cover mix-blend-overlay" data-alt="A futuristic digital architectural blueprint overlaying a dark blue city map at night. Glowing sage green lines trace property boundaries and zoning districts, with floating data markers indicating real-time investment metrics and capital growth potential. The atmosphere is analytical, high-tech, and sophisticated with a cinematic dark mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXpNZbnftlISKGcrhZFlwEWxV_RRJCu00Df685nrdW6_ZJbHQSW3Th6tjHeFd-biX6hHhh2gKjhl8uZ-1xhLeTTmzwDurc9LtbSDK5kgE9T1xX0bchdrRFL9jpnqj-c1qjlupY3OCfGTox69Hbdh-YG8tqilcnx4RWyHpLc4q6mXH0oE27Bj2tMI3RZWVT4ttOKoBrlhR2ny8tscymWYt6MdCTojLNzc-Ciyv351cYL3DeX8cbrXbKvua5R7MzH05VdccF1cOZq24"/>
+</div>
+<!-- Pipeline Stepper -->
+<section class="mb-xl relative z-10">
+<div class="flex items-center justify-between w-full mb-lg relative">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-[2px] bg-surface-variant -translate-y-1/2 z-0"></div>
+<!-- Completed Line -->
+<div class="absolute top-1/2 left-0 w-[45%] h-[2px] bg-primary -translate-y-1/2 z-0"></div>
+<!-- Running Line -->
+<div class="absolute top-1/2 left-[45%] w-[10%] h-[2px] bg-tertiary/30 -translate-y-1/2 z-0 overflow-hidden">
+<div class="h-full w-full progress-shimmer bg-tertiary"></div>
+</div>
+<!-- Step 1: Done -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-secondary border-2 border-secondary shadow-[0_0_10px_rgba(157,202,255,0.2)]">
+<span class="material-symbols-outlined" data-icon="storefront">storefront</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary mt-sm uppercase tracking-widest">Market</span>
+</div>
+<!-- Step 2: Done -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container border-2 border-primary shadow-[0_0_10px_rgba(134,215,172,0.2)]">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary mt-sm uppercase tracking-widest">Financial</span>
+</div>
+<!-- Step 3: Running -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center text-tertiary border-2 border-tertiary pulse-amber shadow-[0_0_15px_rgba(255,185,80,0.3)]">
+<span class="material-symbols-outlined" data-icon="domain_verification">domain_verification</span>
+</div>
+<span class="font-label-sm text-label-sm text-tertiary mt-sm uppercase tracking-widest">Zoning</span>
+</div>
+<!-- Step 4: Waiting -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="warning">warning</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-sm uppercase tracking-widest opacity-50">Risk</span>
+</div>
+<!-- Step 5: Waiting -->
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="summarize">summarize</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-sm uppercase tracking-widest opacity-50">Report</span>
+</div>
+</div>
+</section>
+<!-- Agent Cards Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-gutter z-10 relative">
+<!-- Agent 1 -->
+<div class="glass-card p-md rounded-xl flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-secondary" data-icon="monitoring">monitoring</span>
+<span class="font-label-md px-sm py-[2px] rounded-full bg-secondary/10 text-secondary border border-secondary/20">Done</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Market Agent</h3>
+<p class="font-body-sm text-on-surface-variant line-clamp-1">Comparing neighborhood prices</p>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            Averaging 24 comparables
+                        </p>
+</div>
+</div>
+<!-- Agent 2 -->
+<div class="glass-card p-md rounded-xl flex flex-col gap-sm">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary" data-icon="calculate">calculate</span>
+<span class="font-label-md px-sm py-[2px] rounded-full bg-primary/10 text-primary border border-primary/20">Done</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Financial Agent</h3>
+<p class="font-body-sm text-on-surface-variant line-clamp-1">Computing ROI &amp; Cap Rate</p>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="check_circle">check_circle</span>
+                            ROI set at 8.4%
+                        </p>
+</div>
+</div>
+<!-- Agent 3 (Running) -->
+<div class="glass-card p-md rounded-xl flex flex-col gap-sm border-tertiary/40 glow-mint">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-tertiary" data-icon="gavel">gavel</span>
+<span class="font-label-md px-sm py-[2px] rounded-full bg-tertiary/10 text-tertiary border border-tertiary/20 pulse-amber font-mono uppercase">Running</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Zoning Agent</h3>
+<p class="font-body-sm text-on-surface-variant">Checking permits &amp; zoning</p>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/30">
+<div class="w-full bg-surface-variant h-1 rounded-full mb-sm overflow-hidden">
+<div class="h-full bg-tertiary w-3/4 progress-shimmer"></div>
+</div>
+<p class="font-label-sm text-label-sm text-tertiary italic flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px] animate-spin" data-icon="progress_activity">progress_activity</span>
+                            Scanning property tax records...
+                        </p>
+</div>
+</div>
+<!-- Agent 4 -->
+<div class="glass-card p-md rounded-xl flex flex-col gap-sm opacity-60">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-error" data-icon="crisis_alert">crisis_alert</span>
+<span class="font-label-md px-sm py-[2px] rounded-full bg-surface-variant text-on-surface-variant font-mono uppercase">Waiting</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Risk Agent</h3>
+<p class="font-body-sm text-on-surface-variant">Evaluating macro trends</p>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="hourglass_empty">hourglass_empty</span>
+                            Queue position: #1
+                        </p>
+</div>
+</div>
+<!-- Agent 5 -->
+<div class="glass-card p-md rounded-xl flex flex-col gap-sm opacity-60">
+<div class="flex justify-between items-start">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<span class="font-label-md px-sm py-[2px] rounded-full bg-surface-variant text-on-surface-variant font-mono uppercase">Waiting</span>
+</div>
+<div>
+<h3 class="font-body-md font-bold text-on-surface">Report Agent</h3>
+<p class="font-body-sm text-on-surface-variant">Generating investment memo</p>
+</div>
+<div class="mt-auto pt-sm border-t border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-50 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[12px]" data-icon="lock">lock</span>
+                            Awaiting dependency
+                        </p>
+</div>
+</div>
+</section>
+<!-- Detailed Terminal Logs Area -->
+<section class="mt-xl relative z-10">
+<div class="glass-card rounded-xl overflow-hidden">
+<div class="bg-surface-container-high px-lg py-sm border-b border-primary/10 flex justify-between items-center">
+<span class="font-label-md text-label-md text-primary uppercase">Activity Log_v4.2.0</span>
+<div class="flex gap-xs">
+<span class="w-3 h-3 rounded-full bg-error/30"></span>
+<span class="w-3 h-3 rounded-full bg-tertiary/30"></span>
+<span class="w-3 h-3 rounded-full bg-primary/30"></span>
+</div>
+</div>
+<div class="p-lg h-64 overflow-y-auto font-label-md text-label-md space-y-xs scrollbar-hide" id="terminal">
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:01]</span> System initialized. Handshaking with Austin MLS servers...</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:03]</span> MARKET_AGENT: Success. 123 Main St identified. Parcel ID: 0209010111.</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:05]</span> MARKET_AGENT: Fetching historical sales in 78702...</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:15]</span> MARKET_AGENT: Found 24 comps. Price per sqft normalized.</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:18]</span> FINANCIAL_AGENT: Pulling current mortgage rates for commercial-residential hybrid.</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:22]</span> FINANCIAL_AGENT: Running Monte Carlo simulation for 10-year holding period...</p>
+<p class="text-on-surface-variant"><span class="text-primary">[08:42:35]</span> FINANCIAL_AGENT: Simulation complete. ROI: 8.4% (Confidence 92%).</p>
+<p class="text-tertiary"><span class="text-primary">[08:42:36]</span> ZONING_AGENT: Parsing City of Austin Land Development Code Subchapter E...</p>
+<p class="text-tertiary animate-pulse"><span class="text-primary">[08:42:40]</span> ZONING_AGENT: Scanning property tax records for recent variances...</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer Shell -->
+<footer class="w-full py-xl mt-auto border-t border-outline-variant/30 bg-surface-container-lowest flex flex-col md:flex-row justify-between items-center px-margin max-w-container-max mx-auto gap-gutter">
+<div class="flex flex-col gap-xs">
+<span class="font-display-lg text-body-lg text-primary">Aetheris AI</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant opacity-70">© 2024 Aetheris Autonomous Systems. Powered by Real-Time MLS &amp; Zoning Data.</p>
+</div>
+<div class="flex gap-xl">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors uppercase" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors uppercase" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors uppercase" href="#">Data Sources</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-secondary transition-colors uppercase" href="#">API Status</a>
+</div>
+</footer>
+</main>
+<script>
+        // Micro-interaction for countdown timer
+        let timeLeft = 42;
+        const countdownEl = document.getElementById('countdown');
+        const interval = setInterval(() => {
+            timeLeft--;
+            if(timeLeft <= 0) {
+                countdownEl.innerText = "Processing final results...";
+                clearInterval(interval);
+            } else {
+                countdownEl.innerText = `${timeLeft} seconds remaining`;
+            }
+        }, 1000);
+
+        // Terminal Auto-scroll simulation
+        const terminal = document.getElementById('terminal');
+        const logs = [
+            "ZONING_AGENT: Found potential for Accessory Dwelling Unit (ADU) overlay.",
+            "ZONING_AGENT: Verifying setback requirements for SF-3 zoning.",
+            "ZONING_AGENT: Historical preservation flag detected on adjacent lot.",
+            "ZONING_AGENT: Cross-referencing flood plain maps for Travis County...",
+            "ZONING_AGENT: Permit history check initiated (Case #C14-2023-005)..."
+        ];
+        let logIndex = 0;
+
+        setInterval(() => {
+            if(logIndex < logs.length) {
+                const p = document.createElement('p');
+                p.className = "text-tertiary animate-pulse";
+                const now = new Date();
+                const timestamp = `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}]`;
+                p.innerHTML = `<span class="text-primary">${timestamp}</span> ${logs[logIndex]}`;
+                terminal.appendChild(p);
+                terminal.scrollTop = terminal.scrollHeight;
+                logIndex++;
+            }
+        }, 3000);
+    </script>
+</body></html>
