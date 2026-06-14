@@ -3,7 +3,7 @@ builder = "nixpacks"
 buildCommand = "pip install -r requirements.txt"
 
 [deploy]
-startCommand = "celery -A tasks worker --loglevel=info"
+startCommand = "celery -A tasks worker --loglevel=info --concurrency=1 --max-memory-per-child=100000"
 restartPolicyType = "on_failure"
 
 [variables]
