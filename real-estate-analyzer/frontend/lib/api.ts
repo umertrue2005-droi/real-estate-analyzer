@@ -1,6 +1,6 @@
 import type { ReportResponse, ResultsResponse, StatusResponse, User } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://real-estate-analyzer-production-6f73.up.railway.app";
+const API_URL = "https://real-estate-analyzer-production-6f73.up.railway.app";
 
 type AuthResponse = {
   token: string;
