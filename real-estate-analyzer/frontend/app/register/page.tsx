@@ -19,21 +19,13 @@ export default function RegisterPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("http://localhost:8000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
-      });
-      if (!res.ok) {
-        const detail = await res.text();
-        throw new Error(detail || `Request failed with ${res.status}`);
-      }
-      const response = (await res.json()) as AuthResponse;
+      const { register } = await import("@/lib/api");
+      const response = await register(name, email, password);
       storeAuth(response.token, response.user);
       router.push("/");
     } catch (err) {
