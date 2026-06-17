@@ -8,8 +8,8 @@ app = FastAPI(title="Autonomous Real Estate Investment Analyzer")
 
 app.add_middleware(
     CORSMiddleware,
-allow_origins=["https://frontend-production-7144.up.railway.app"],
-allow_credentials=True,
+allow_origins=["*"],
+allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
