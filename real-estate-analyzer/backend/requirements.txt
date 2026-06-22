@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 crewai
-openai
+google-generativeai
 sqlalchemy
 alembic
 psycopg2-binary

@@ -21,7 +21,7 @@ AGENT_STEPS = [
     ("Financial Agent", "Computing ROI, Cap Rate, Cash-on-Cash"),
     ("Zoning Agent", "Checking zoning codes & permit history"),
     ("Risk Agent", "Evaluating vacancy, flood zone, walk score"),
-    ("Report Agent", "Generating investment memo with GPT-4o"),
+    ("Report Agent", "Generating investment memo with Gemini"),
 ]
 
 
@@ -109,4 +109,3 @@ async def execute_pipeline(analysis_id: int, address: str) -> None:
 @celery.task(name="tasks.run_analysis")
 def run_analysis(analysis_id: int, address: str) -> None:
     asyncio.run(execute_pipeline(analysis_id, address))
-

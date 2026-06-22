@@ -1,6 +1,4 @@
-import os
-
-from openai import AsyncOpenAI
+from services.gemini_service import generate_text
 
 
 def fallback_report(market: dict, financial: dict, zoning: dict, risk: dict) -> dict:
@@ -43,25 +41,27 @@ Composite risk is {risk["risk_score"]}/100 ({risk["risk_level"]}). Walk Score is
 
 
 async def run_report_agent(market: dict, financial: dict, zoning: dict, risk: dict) -> dict:
-    api_key = os.getenv("OPENAI_API_KEY", "")
-    if not api_key:
-        return fallback_report(market, financial, zoning, risk)
     try:
-        client = AsyncOpenAI(api_key=api_key)
-        response = await client.chat.completions.create(
-            model="gpt-4o",
-            messages=[
-                {
-                    "role": "system",
-                    "content": "You are a senior real estate investment analyst. Write a professional markdown investment memo with Executive Summary, Market Analysis, Financial Model, Zoning & Legal, Risk Assessment, and Recommendation. Be specific with numbers. Be direct.",
-                },
-                {"role": "user", "content": str({"market": market, "financial": financial, "zoning": zoning, "risk": risk})},
-            ],
-            temperature=0.2,
-        )
+        address = market.get("property", {}).get("address", "the subject property")
+        prompt = f"""
+You are a senior real estate investment analyst.
+Write a professional markdown investment memo for this specific address: {address}
+
+Use these inputs and be specific with the numbers. Do not invent a different address.
+Include these sections: Executive Summary, Market Analysis, Financial Model, Zoning & Legal, Risk Assessment, Recommendation.
+Be direct and practical.
+
+Inputs:
+{{
+  "market": {market},
+  "financial": {financial},
+  "zoning": {zoning},
+  "risk": {risk}
+}}
+"""
+        result = await generate_text(prompt)
         fallback = fallback_report(market, financial, zoning, risk)
-        fallback["memo_markdown"] = response.choices[0].message.content or fallback["memo_markdown"]
+        fallback["memo_markdown"] = result or fallback["memo_markdown"]
         return fallback
     except Exception:
         return fallback_report(market, financial, zoning, risk)
-
